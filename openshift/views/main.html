@@ -1,0 +1,67 @@
+: cascade index
+: around main -> {
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Sample Dancer Application</h1>
+
+            <h2>Description</h2>
+            <p>Sample web application built with Perl Dancer.<br>Purpose of this sample application is to show examples of:</p>
+            <ul>
+                <li>Using DBIx::Class within Dancer  </li>
+                <li>Writing Plugins for Dancer  </li>
+                <li>Writing tests for Dancer application  </li>
+                <li>Deploying application on <a href="https://www.openshift.com/">OpenShift PaaS</a>  </li>
+            </ul>
+
+            <h2>Demo</h2>
+            <p>Demo is running with Openshift's default Perl and MySQL cartridges.  </p>
+            <ul>
+                <li>Perl 5.10  </li>
+                <li>Apache 2.2  </li>
+                <li>MySQL 5.5  </li>
+            </ul>
+            <p>It is recommended to use versions above or higher for development. </p>
+
+            <h2>Deployment</h2>
+            <p>Create MySQL database </p>
+            <pre>CREATE DATABASE sample CHARACTER SET utf8 CLLATE utf8_general_ci;</pre>
+
+            <p>Run setup script</p>
+<pre>cd openshift/bin
+sh setup.sh</pre> 
+            <p>This will create new tables, test user account, and extra directories needed for the application.  </p>
+
+            <h3>For local environment</h3>
+            <p>In order to run the application on your local environement, you'll need to set up a config file for your environement.  </p>
+<pre>cd openshift/lib/Conf 
+cp production.conf development.conf</pre>
+            <p>Please edit the new config file accordingly.  </p>
+
+            <p>The sample application is running from Apache with Plack, but you can also run it with plackup.  </p>
+<pre>cd openshift/bin
+plackup app.pl --enable-ssl --ssl-key-file=server.key --ssl-cert-file=server.crt</pre>
+            <p>Create self signed SSL certificate for test.  </p>
+
+            <p>You can also run it with Carton if you're using Carton for dependency management.  </p>
+<pre>carton install
+cd openshift/bin
+carton exec plackup app.pl --enable-ssl --ssl-key-file=server.key --ssl-cert-file=server.crt</pre>
+
+            <h2>Testing</h2>
+            <p>First off, create MySQL database for test.  </p>
+            <pre>CREATE DATABASE sandbox CHARACTER SET utf8 CLLATE utf8_general_ci;</pre>
+
+            <p>You'll need to set up a config file for test environment.  </p>
+<pre>cd openshift/lib/Conf 
+cp production.conf sandbox.conf</pre>
+            <p>Please edit the new config file accordingly.  </p>
+
+            <p>You can process a single test file or all tests at once.  </p>
+<pre>cd t
+sh test.sh -all or file name</pre>
+
+        </div>
+    </div>
+
+: }

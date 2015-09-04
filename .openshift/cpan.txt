@@ -1,0 +1,14 @@
+Test::Base
+YAML
+Dancer
+Dancer::Template::Xslate
+Dancer::Session::PSGI
+Plack
+Plack::Session::State::Cookie
+DBIx::Class
+SQL::Translator
+Crypt::PBKDF2
+Type::Tiny
+DateTime
+DateTime::Format::MySQL
+JSON

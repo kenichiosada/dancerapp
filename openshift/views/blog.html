@@ -1,0 +1,57 @@
+: cascade index
+: around main -> {
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Blog</h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+        : if $page.blog.size() == 0 {
+        <p>There is no post.</p>
+        : }
+        : for $page.blog -> $post {
+            : if $post.status == 0 {
+            <div class="panel panel-warning">
+            : } else {
+              : if $page.user.user_id {
+              <div class="panel panel-success">
+              : } else {
+              <div class="panel panel-default">
+              : }
+            : }
+                <div class="panel-heading">
+                   : if $page.user.user_id {
+                   <a href="/post/<: $post.blog_id :>" class="pull-right"><i class="fa fa-edit"></i></a>
+                   : }
+                   <: $post.title :> 
+                   : if $post.status == 0 { 
+                   [Inactive] 
+                   : }
+                </div>
+                <div class="panel-body">
+                   <p><: $post.content :></p>
+                </div>
+           </div>
+        : }
+        </div>
+        : if $page.user.user_id {
+        <div class="col-lg-6">
+            <h4 class="page-header">Add Entry</h4>
+            <form method="POST" role="form">
+                <div class="form-group">
+                  <input type="text" name="title" placeholder="Title" class="form-control">
+                </div>
+                <div class="form-group">
+                    <textarea name="content" rows="3" placeholder="Type what you need to say.." class="form-control" ></textarea>
+                </div>
+                <button class="btn btn-default" type="submit">Save</button>
+            </form>
+        </div>
+        : }
+    </div>
+
+: }
