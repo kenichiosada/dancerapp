@@ -1,5 +1,7 @@
 # Name
 
+Sample Dancer Application
+
 # Description
 
 Sample web application built with Perl Dancer.  
