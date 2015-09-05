@@ -1,1 +1,3 @@
 .project
+openshift/lib/Conf/development.conf
+openshift/lib/Conf/sandbox.conf
