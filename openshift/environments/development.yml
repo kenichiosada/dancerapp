@@ -4,18 +4,18 @@
 # console: log messages to STDOUT (your console where you started the
 #          application server)
 # file:    log message to a file. log directory is defined in app.pl 
-logger: "file"
+logger: "console"
 
 # the log level for this environement
 # core is the lowest, it shows Dancer's core log messages as well as yours
 # (debug, warning and error)
-log: "error"
+log: "debug"
 
 # should Dancer consider warnings as critical errors?
-warnings: 0 
+warnings: 1 
 
 # should Dancer show a stacktrace when an error is caught?
-show_errors: 0 
+show_errors: 1 
 
 # what type of session handling do you want Dancer to use?
 session: "PSGI"
