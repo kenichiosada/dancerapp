@@ -1,7 +1,6 @@
 package Model::Entry;
 
 use Moo;
-extends 'Model';
 
 use Conf::Types qw( :all );
 

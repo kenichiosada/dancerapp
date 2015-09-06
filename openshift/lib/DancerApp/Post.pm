@@ -3,7 +3,7 @@ package DancerApp::Post;
 use Dancer ':syntax';
 
 use Plugin::Template;
-use Plugin::Util qw( getLogger sanitize );
+use Plugin::Util qw( getLogger sanitize decode_html );
 use Plugin::Db qw( schema );
 
 use Schema;
@@ -51,7 +51,7 @@ any ['get', 'post'] => '/*' => sub {
         my $title = sanitize(params->{title}, 'text');
         $EntryObj->title($title) if $title;
 
-        my $content = sanitize(params->{content}, 'text'); 
+        my $content = sanitize(params->{content}, 'html'); 
         $EntryObj->content($content) if $content;
 
         my $status = sanitize(params->{status}, 'number');
@@ -75,7 +75,10 @@ any ['get', 'post'] => '/*' => sub {
     }
   }
 
-  $page->{post} = $post;
+  # marinate data for template
+  my %data = $post->get_columns;
+  $data{'content'} = decode_html($data{'content'});
+  $page->{post} = \%data;
 
   goTemplate;
 };

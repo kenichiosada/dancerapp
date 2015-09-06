@@ -9,6 +9,9 @@ use Dancer::Logger::File;
 
 use CGI;
 use CGI::Cookie;
+use HTML::Scrubber;
+use HTML::Entities;
+use Text::Xslate qw( mark_raw );
 
 # Get cookie
 register getCookie => sub {
@@ -39,11 +42,19 @@ register sanitize => sub {
       $val =~ s/[~`@#\$%\^&\*\(\)\+=\{\}\[\]\\\|\:\;\'"\<\>\?\/]//g;
     }
     if ( $type eq 'html' ) {
-
+      my $scrubber = HTML::Scrubber->new( allow => [ qw/ a p b i pre br ul li / ] );
+      $val = $scrubber->scrub($val);
+      $val = encode_entities($val);
     }
   }
 
   return $val;
+};
+
+# Need mark_raw for Text::Xslate
+register decode_html => sub {
+  my $val = shift;
+  return mark_raw(decode_entities($val));
 };
 
 register_plugin;

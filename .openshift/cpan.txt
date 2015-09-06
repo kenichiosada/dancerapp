@@ -12,3 +12,4 @@ Type::Tiny
 DateTime
 DateTime::Format::MySQL
 JSON
+HTML::Scrubber

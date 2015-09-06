@@ -12,3 +12,4 @@ requires 'Type::Tiny';
 requires 'DateTime';
 requires 'DateTime::Format::MySQL';
 requires 'JSON';
+requires 'HTML::Scrubber';
