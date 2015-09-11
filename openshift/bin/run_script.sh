@@ -17,11 +17,10 @@ if [ -z "$OPENSHIFT_APP_NAME" ]; then
   export DANCER_CONFDIR=${APP_HOME}openshift
 else 
   # prod
-  export APP_HOME="$OPENSHIFT_APPHOME"
-  OPENSHIFT_REPO_DIR=${OPENSHIFT_REPO_DIR}
-  export PERL5LIB=${OPENSHIFT_REPO_DIR}openshift/lib/:$PERL5LIB
+  export APP_HOME=${OPENSHIFT_REPO_DIR}
+  export PERL5LIB=${APP_HOME}openshift/lib/:$PERL5LIB
   export DANCER_ENVIRONMENT='production'
-  export DANCER_ENVDIR=${APP_HOME}environments
+  export DANCER_ENVDIR=${APP_HOME}openshift/environments
   export DANCER_CONFDIR=${APP_HOME}openshift
 fi
 
